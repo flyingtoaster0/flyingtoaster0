@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "Tim Builds A Keyboard"
-date:   2016-08-26 12:07:49 -0400
+title:  "Typing Characters"
+date:   2016-08-25 21:00:00 -0400
 categories: hardware
 ---
-
-# August 25th, 2016
 
 Today I wanted to get characters actually typing on on the screen.
 
@@ -123,39 +121,3 @@ After flashing the chip again, this was the result!
 Super excited about this. This is awesome. 
 
 Now it's time to look into how to go about supporting 22 keys with less than 22 input pins. I can imagine a few ways to do this, but I'm sure there's a "correct" way to do this. I'll look into it for next time.
-
-# August 24th, 2016
-
-During the day, I had the sudden realization that ASCII characters weren't enough, and that numpads have their own keyboard codes. I would also need support for numlock which obviously isn't an ASCII character. So I did some more looking around, and it seemed that the thing to do was write my own firmware in C with [LUFA](http://www.fourwalledcubicle.com/LUFA.php), and flash the chip directly with [avrdude](http://www.nongnu.org/avrdude/).
-
-So I grabbed the LUFA examples and had a look at the code. Other than setting setting up a development environment in Windows (Thank you [MinGW](http://www.mingw.org/)!), the whole thing was relatively painless. In the end, all I had to do was run `make`, short the Pro Micro's reset and ground pins twice to get it into its bootloader, and then run:
-
-{% highlight bash %}
-avrdude.exe -p atmega32u4 -c avr109 -P COM4 -U flash:w:Keyboard.hex
-{% endhighlight %}
-
-![alt text](/assets/flashing_pro_micro.gif "Flashing the Pro Micro")
-
-...and it worked! Nothing failed and nothing was bricked; I was impressed!
-
-I was also initally surprised to see that my computer no longer identified my Pro Micro as an Arduino Leonardo, but then it immediately made a huge amount of sense after having thought about it for more than 0.8 seconds.
-
-What was even cooler though was that my computer actually now recognized the Pro Micro as an actual keyboard instead!
-
-![alt text](/assets/device_manager_two_keyboards.png "Two keyboards!")
-
-Holy crap, two keyboards!
-
-That's all for tonight. I feel accomplished.
-
-# August 23rd, 2016
-
-While browsing Massdrop, I came across a cool looking numpad and almost joined the drop, but decided to look up some reviews on it. I found a thread of geekhack where the poster asked about it, and people started comparing it to other kits. While looking at the kits, I came across [this thread](https://geekhack.org/index.php?topic=35894.0) where a forum member describes a numpad he build from scratch. I looked at the post for a bit and eventually had an "I could do that..." thought. So I started doing research.
-
-I started by looking at what microcontroller to use, and after browsing [this very resourceful website](https://www.google.ca/?ion=1&espv=2#q=how%20to%20build%20a%20keyboard) I found that a lot of people were using the ATmega32U4 for building custom keyboards. I then remembered that I had a [Pro Micro](https://www.sparkfun.com/products/12640) kicking around, so I pulled that you and fired up the Arduino IDE. I learned that the Arduino library has some pretty basic keyboard commands. The most useful one looks like this:
-
-{% highlight c %}
-Keyboard.write(char);
-{% endhighlight %}
-
-It pretty much just sends an ASCII character to the computer. I compiled, and it worked! Cool, that's enough for tonight.
