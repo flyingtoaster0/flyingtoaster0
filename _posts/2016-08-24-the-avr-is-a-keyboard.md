@@ -2,7 +2,7 @@
 layout: post
 title:  "The AVR Is A Keyboard"
 date:   2016-08-24 21:00:00 -0400
-categories: hardware
+categories: hardware keyboards
 ---
 
 During the day, I had the sudden realization that ASCII characters weren't enough, and that numpads have their own keyboard codes. I would also need support for numlock which obviously isn't an ASCII character. So I did some more looking around, and it seemed that the thing to do was write my own firmware in C with [LUFA](http://www.fourwalledcubicle.com/LUFA.php), and flash the chip directly with [avrdude](http://www.nongnu.org/avrdude/).

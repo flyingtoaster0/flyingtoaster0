@@ -2,7 +2,7 @@
 layout: post
 title:  "Typing Characters"
 date:   2016-08-25 21:00:00 -0400
-categories: hardware
+categories: hardware keyboards
 ---
 
 Today I wanted to get characters actually typing on on the screen.
