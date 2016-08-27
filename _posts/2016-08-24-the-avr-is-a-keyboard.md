@@ -15,7 +15,7 @@ avrdude.exe -p atmega32u4 -c avr109 -P COM4 -U flash:w:Keyboard.hex
 
 ![alt text](/assets/flashing_pro_micro.gif "Flashing the Pro Micro")
 
-...and it worked! Nothing failed and nothing was bricked; I was impressed!
+...and it worked! Nothing failed and nothing was bricked. Good!
 
 I was also initally surprised to see that my computer no longer identified my Pro Micro as an Arduino Leonardo, but then it immediately made a huge amount of sense after having thought about it for more than 0.8 seconds.
 
