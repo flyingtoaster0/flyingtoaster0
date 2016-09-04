@@ -1,9 +1,7 @@
 ---
 layout: post
 title:  "AVR Ports"
-date:   2016-09-01 10:12:00 -0400
 categories: hardware keyboards
-published: false
 ---
 
 After getting a pushbutton to send a single key event to the computer, my next goal was to wire up a few more "keys" in the way an actual keyboard circuit would be laid out. I had huge amounts of trouble getting simple things working. I couldn't even reliably turn on a pin. It didn't take long before I realized that I actually had no idea how all the macros provided by LUFA worked. So I went and did some reading on how pins on AVR microcontrollers actually work.
