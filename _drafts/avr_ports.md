@@ -4,14 +4,14 @@ title:  "AVR Ports"
 categories: hardware keyboards
 ---
 
-After getting a pushbutton to send a single key event to the computer, my next goal was to wire up a few more "keys" in the way an actual keyboard circuit would be laid out. I had huge amounts of trouble getting simple things working. I couldn't even reliably turn on a pin. It didn't take long before I realized that I actually had no idea how all the macros provided by LUFA worked. So I went and did some reading on how pins on AVR microcontrollers actually work.
+After getting a pushbutton to send a single key event to the computer, my next goal was to wire up a few more "keys" in the way an actual keyboard circuit would be laid out. I had a lot of trouble getting simple things working. I couldn't even reliably turn on a pin. It didn't take long before I realized that I actually had no idea how all the macros provided by LUFA worked. So I did some reading on how pins on AVR microcontrollers actually work.
 
 
 # Arduino and the ATmega328p
 
 My first experience with microcontrollers was, like many people, with an Arduino Uno. Arduino is an open source prototyping platform that makes it easy to get started with hardware projects. They provide their own IDE and C-like programming language to program the boards.
 
-*Hello World!* with Arduino or other hardware projects is generally blinking an LED, because what better way is there to say hello to the world than flashing a bright light in its face? Hello world in Arduino would look like this:
+*Hello World!* with Arduino or other microcontrollers is generally blinking an LED, because what better way is there to say hello to the world than flashing a bright light in its face? Hello world in Arduino would look like this:
 
 
 {% highlight c %}
@@ -50,31 +50,30 @@ int main() {
   DDRB = _BV(PB0);
 
   while(1) {
-	PORTB ^= _BV(PB0);
-	sleep(1000);
+  PORTB ^= _BV(PB0);
+  sleep(1000);
   }
 }
 {% endhighlight %}
 
-...While I instinctively knew what this program was supposed to do, I still had no idea what I was looking at. Obviously, we're doing some setup, and then going into a loop to toggle the LED on and off, but what do all these capital letters mean? Are they supposed to be macros or something?
+...While I instinctively knew what this program was supposed to do, I still had no idea what `DDRB = _BV(PB0)` or `PORTB ^= _BV(PB0)` were doing. Obviously, line 2 is doing some kind of setup, the loop toggles the LED on and off, but what do all these capital letters mean? Are they supposed to be macros or something?
 
-Short answer: Yes.
+Short answer: Yes and no.
 
 Long answer:
 
 
 # AVR Ports
 
-Arduino is great. It takes a lot of the esoteric aspects of microcontroller programming and makes it very obvious what you're doing. The problem is that this can give a false understanding of how pins on an AVR actually work.
+Arduino is great. It takes a lot of the esoteric aspects of microcontroller programming and makes what you're doing very obvious. The problem is that this can give a false understanding of how pins on an AVR work at a hardware level.
 
 I started by looking at pinout for the ATmega32u4:
 
 ![alt text](/assets/32U4PinMapping.png "ATmega32u4 pinout")
 
-In my case, `PB0` (Pin 8 on the diagram) seems to connected to the LED on my Pro Micro. This can been seen on the diagram how its function on an Arduino is an RX LED. Neat. I tried modifying the code to work with other pins too, connecting an LED to the appropriate pin. `PB1` worked, `PD4` was also good.
+In my case, `PB0` (Pin 8 on the diagram) seems to be connected to the LED on my Pro Micro. Neat. I tried modifying the code to work with other pins too, connecting an LED to the appropriate pin. `PB1` worked; `PD4` was also good.
 
-Keeping in mind the keyboard, I knew that I would need to set a bunch of pins as inputs and cycle through outputs to create a scanning matrix (More on that in a later post). The point is, I would need to source voltage from one pin to another, checking its state to see if a switch had been pressed. I found some example code for setting a pin as an input:
-
+In order to detect keypresses on the keyboard, I would need to source voltage from one pin to another. I found some example code for setting a pin as an input:
 
 {% highlight c %}
 // Set PB0 as an input, and the rest as outputs
@@ -87,11 +86,12 @@ DDRB = ~(_BV(PB0) | _BV(PB1));
 variable = (PINB & _BV(PB0));
 {% endhighlight %}
 
-I still wasn't super sure about what was going on, other than that it looked like the code was doing some bitwise logic. Digging around, I found a GitHub repo where the author was doing something similar. Here's an excerpt of his keypress checking:
+I still wasn't super sure about what was going on, other than that it looked like the code was doing some bitwise logic. Digging around, I found a GitHub repo where the author was doing something similar. Here's an sample of the keypress checking:
 
 {% highlight c %}
 // In keypad.h
 #define PB_8_BIT 4
+
 
 // In main.c
 #include "keypad.h"
@@ -102,9 +102,9 @@ if (!((1<<PB_8_BIT)&PINB))
   KeyboardReport->KeyCode[UsedKeyCodes++] = HID_KEYBOARD_SC_KEYPAD_8_AND_UP_ARROW;
 {% endhighlight %}
 
-So it's looking like there's some actual bit shifting going on here. Based on the definition in `keypad.h`, the condition inside the if statement could be written `!((1<<4) & PINB)`. 
+So it looks like there's some actual bit shifting going on here. Based on the definition in `keypad.h`, the condition inside the if statement could be written `!((1<<4) & PINB)`. 
 
-Looking back at my own check the press state of a pushbutton, I had:
+Looking back at my own implementation, I was checking the pushbutton's press state with:
 
 {% highlight c %}
 !(PINB & _BV(PB0))
@@ -117,8 +117,8 @@ int main() {
   DDRB = 1<<0; // Was DDRB = _BV(PB0);
 
   while(1) {
-	PORTB ^= 1<<0; // Was PORTB ^= _BV(PB0);
-	sleep(1000);
+  PORTB ^= 1<<0; // Was PORTB ^= _BV(PB0);
+  sleep(1000);
   }
 }
 {% endhighlight %}
@@ -159,11 +159,15 @@ I found the definition of `_BV(N)`. It's in `avr/sfr_defs.h`.
 // ...and so on
 {% endhighlight %}
 
+Makes sense.
+
 # I/O Registers
 
 I found that `DDRx`, `PORTx`, and `PINx` are actually registers in the AVR microcontroller that are actually very essential to doing anything with an AVR.
 
-While in Arduino, one can manipulate the pins driectly (e.g. pin 13), when programming an AVR, it is more accurate to think of pins as a part of the ports (e.g. `PB3` refers to "pin 3 of port B").
+In Arduino, one can manipulate the pins directly (e.g. pin 13), but when programming an AVR in C, it is more accurate to think of pins as being *a part of a single port*. 
+
+For example, as an input/output pin, `PB3` is better referred to as "pin 3 of port B on the AVR" rather than "pin 11 of the AVR".
 
 ### Data Direction Register
 
@@ -177,7 +181,7 @@ Setting `PB3` to be an input, and the rest of port B's pins to be outputs could 
 DDRB = _BV(PB3);
 {% endhighlight %}
 
-Where `~_BV(PB3)` is equal to `0b11111011`, making the 3rd pin on port B an input and the rest of the pins outputs.
+`~_BV(PB3)` is equal to `0b11111011`, making the 3rd pin on port B an input and the rest of the pins outputs.
 
 ### Port Data Register
 
@@ -187,7 +191,7 @@ Where `~_BV(PB3)` is equal to `0b11111011`, making the 3rd pin on port B an inpu
 
 For a pin configured as an output, writing `1` will set that pin to a high state; writing `0` will set that pin to low.
 
-Setting `PB3` to be an output and then setting its state to high could look like this:
+Setting `PB3` as an output and then setting its state to high could look like this:
 
 {% highlight c %}
 // Set PB3 to be an output, the rest of port B's pins are inputs
@@ -197,23 +201,23 @@ DDRB = _BV(PB3);
 PORTB = _BV(PB3);
 {% endhighlight %}
 
-Where `_BV(PB3)` is equal to `0b00000100` in both cases, making the 3rd pin on port B an output, and set to high.
+`_BV(PB3)` is equal to `0b00000100` in both cases, making the 3rd pin on port B an output, and set to high.
 
 #### Inputs
 
 For a pin configured as an input, setting `1` will enable the pin's internal pull-up resistor. Writing `0` will disable it.
 
-Setting `PB3` to be an input and then turning on its internal pullup resistor could look like this:
+Setting `PB3` as an input and then turning on its internal pullup resistor could look like this:
 
 {% highlight c %}
-// Set PB3 to be an input, the rest of port B's pins are outputs
+// Set PB3 as an input, the rest of port B's pins are outputs
 DDRB = ~_BV(PB3);
 
 // Turn on PB3's pull-up resistor
 PORTB = _BV(PB3);
 {% endhighlight %}
 
-Where `~_BV(PB3)` is equal to `0b11111011`, making the 3rd pin on port B an input, and turning on its pull-up resistor.
+`~_BV(PB3)` is equal to `0b11111011`, making the 3rd pin on port B an input, and turning on its pull-up resistor.
 
 ### Port Input Pins Register
 
@@ -294,7 +298,7 @@ which is of course `8` in base 10, and evaluates to `true` as a `bool` in C.
 
 # Oh hai world
 
-Looking back at the original hello world example:
+With what we know now, it's very easy to decipher the *Hello World!* example I showed earlier. Here it is again:
 
 {% highlight c %}
 int main() {
@@ -312,13 +316,16 @@ Set pin 1 of port B as an output.
 The rest of the pins on port B are inputs.
 {% highlight c %}
 DDRB = _BV(PB0);
-_BV(PB0) = 1<<0 = 00000001
-DDRB = 0b00000001;
+
+  00000001
+<<       0  (Shift 0)
+------------
+  00000001  (New value of DDRB)
 {% endhighlight %}
 
 Reverse the state of pin 0 on port B
 
-Loop first pass:
+First pass of the loop:
 {% highlight c %}
 PORTB ^= _BV(PB0);
 
@@ -330,7 +337,7 @@ PORTB ^= _BV(PB0);
 
 Reverse the state of pin 0 on port B
 
-Loop second pass:
+Second pass of the loop:
 {% highlight c %}
 PORTB ^= _BV(PB0);
 
@@ -340,16 +347,16 @@ PORTB ^= _BV(PB0);
   00000000 (New value of PORTB)
 {% endhighlight %}
 
-...And repeat for eternity
+...And repeat for eternity.
 
 # Appendix
 ## There are 10 types of people...
 
-This post requires basic knowledge of bitwise operators. I figured I would dump some basic examplanations and examples here in case anyone needs to refresh their knowledge.
+This post requires basic knowledge of bitwise operators. I figured I would dump some simple explanations and examples here for sake of completeness.
 
 ### OR
 
-Two bits are compared. If either one of them is `1`, then the result is `1`, otherwise, the result is `0`.
+Two bits are compared. If either one of them is `1`, then the result is `1`. Otherwise, the result is `0`.
 
 In C, it is represented by `|`.
 
@@ -364,7 +371,7 @@ e.g.
 
 ### AND
 
-Two bits are compared. If either both of them is `1`, then the result is `1`, otherwise, the result is `0`.
+Two bits are compared. If both of them are `1`, then the result is `1`. Otherwise, the result is `0`.
 
 In C, it is represented by `&`.
 
@@ -408,7 +415,7 @@ e.g.
 
 ### Left Shift
 
-Left shift shifts the bits to the left the specified number of times.
+Shift the bits to the left the specified number of times.
 
 In C, it is represented by `<<`.
 
@@ -425,14 +432,14 @@ e.g.
 
 ### Right Shift
 
-Right shift shifts the bits to the right the specified number of times.
+Shift the bits to the right the specified number of times.
 
 In C, it is represented by `>>`.
 
 e.g.
 
 ```
-1>>3
+8>>3
 
   00001000
 >>       3  (3 times)
