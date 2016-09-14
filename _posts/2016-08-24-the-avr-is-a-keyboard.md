@@ -13,7 +13,7 @@ So I grabbed the LUFA examples and had a look at the code. Other than setting se
 avrdude.exe -p atmega32u4 -c avr109 -P COM4 -U flash:w:Keyboard.hex
 {% endhighlight %}
 
-![alt text](/assets/flashing_pro_micro.gif "Flashing the Pro Micro")
+![alt text](/assets/numpad_keyboard/avr_is_a_keyboard/flashing_pro_micro.gif "Flashing the Pro Micro")
 
 ...and it worked! Nothing failed and nothing was bricked. Good!
 
@@ -21,7 +21,7 @@ I was also initally surprised to see that my computer no longer identified my Pr
 
 What was even cooler though was that my computer actually now recognized the Pro Micro as an actual keyboard instead!
 
-![alt text](/assets/device_manager_two_keyboards.png "Two keyboards!")
+![alt text](/assets/numpad_keyboard/avr_is_a_keyboard/device_manager_two_keyboards.png "Two keyboards!")
 
 Holy crap, two keyboards!
 
