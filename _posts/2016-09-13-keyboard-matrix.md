@@ -21,13 +21,13 @@ One can eliminate the floating state by using pull-up and pull-down resistors.
 
 Suppose we want to detect when a switch is being pressed. Someone inexperienced with circuits might say "Oh that's easy! I'll connect my input to the source voltage with a switch in between. When it the switch is pressed, the input goes high!"
 
-![alt text](/assets/numpad_keyboard/input_switch_vcc.png)
+![alt text](/assets/numpad_keyboard/keyboard_matrix/input_switch_vcc.png)
 
 Our young engineer is correct that the pin will be pulled high when the switch is pressed, but is forgetting that we do not actually know the state of the pin while the switch is open. It *might* be "0", but it also might not be.
 
 One way to fix this problem is with a pull-up resistor:
 
-![alt text](/assets/numpad_keyboard/pullup_resistor.png)
+![alt text](/assets/numpad_keyboard/keyboard_matrix/pullup_resistor.png)
 
 In the circuit above, the input is connected to the VCC with a high-resistance (usually 3.3kΩ or 10kΩ) resistor in between. The input is naturally pulled to "1", and the resistor protects it from receiving too much current. A switch is placed in between the input and GND. In a circuit, current will tend to flow towards the path of least resistance. Because a switch has significantly less resistance than a resistor, when the switch is pressed, current will flow between the input and ground, bringing the input to "0".
 
@@ -37,7 +37,7 @@ When the switch is open, the pin is *pulled up* to VCC.
 
 By reversing the locations of the switch and the resistor, we can create a pull-down resistor. In this case, the state of the pin will be "0" by default.
 
-![alt text](/assets/numpad_keyboard/pulldown_resistor.png)
+![alt text](/assets/numpad_keyboard/keyboard_matrix/pulldown_resistor.png)
 
 When the switch is open, the pin is *pulled down* to ground.
 
@@ -62,7 +62,7 @@ Now that we can detect button presses, but we still have a problem: any keyboard
 
 In a keyboard matrix, the microcontroller's inputs are arranged in *m* rows, and are connected to *n* columns of outputs. The inputs are by default, pulled to "1" by each one of their internal pull-up resistors. The states of the buttons are checked by cycling through the outputs, and setting one of them to "0" at a time. When a button in an active column is pressed, the input that the button is connected to will be pulled to "0", indicating to the microcontroller that a key was pressed. Pressing a button in a column that is inactive (i.e. its output is "1") will do nothing, because the input is also already "1".
 
-![alt text](/assets/numpad_keyboard/keyboard_matrix_1_row.png)
+![alt text](/assets/numpad_keyboard/keyboard_matrix/keyboard_matrix_1_row.png)
 
 In the example above, we have a single input with *n* outputs. The outputs will be cycled through, "taking turns" being "0". Given that we have only one input, the key event to fire is determined entirely by the current state of the outputs.
 
@@ -70,13 +70,13 @@ We can also add as many rows as we have available inputs. The logic works as it 
 
 The result is *m* * *n* possible key events.
  
-![alt text](/assets/numpad_keyboard/keyboard_matrix_m_by_n.png)
+![alt text](/assets/numpad_keyboard/keyboard_matrix/keyboard_matrix_m_by_n.png)
 
 ### Diodes And Ghosting
 
 Ghosting is a term that is used to describe a phenomenon that occurs when a combination of keypresses results in the computer thinking that a different key was pressed altogether. Take a look at the following image:
 
-![alt text](/assets/numpad_keyboard/keyboard_matrix_ghosting.png)
+![alt text](/assets/numpad_keyboard/keyboard_matrix/keyboard_matrix_ghosting.png)
 
 I removed the diodes that were present in the previous circuits. In this picture, three switches are being pressed at the same time. Two of them share row *m*, and two of them share column *2*. Suppose column *1* is currently active. In this case, row *2* is connected to the currently active column *1* because current is allowed to flow "back" through the switch at (Rm, C2). As a result, the keyboard would think that the key at (Rm, C2) was pressed. 
 
@@ -86,7 +86,7 @@ By placing diodes on every switch, we can enforce the direction of the current, 
 
 I wanted to make a small proof of concept for myself before designing a PCB, just to make sure I actually knew what I was doing. The circuit itself is pretty much what you would expect after reading this post. I decided to stick to a 2 * 2 matrix.
 
-![alt text](/assets/numpad_keyboard/keyboard_matrix_2by2_implementation.png)
+![alt text](/assets/numpad_keyboard/keyboard_matrix/keyboard_matrix_2by2_implementation.png)
 
 # The Code
 
@@ -215,4 +215,4 @@ bool CALLBACK_HID_Device_CreateHIDReport(
 
 And here's my prototype laid out on the breadboard, working as expected!
 
-![alt text](/assets/numpad_keyboard/pressing_four_buttons.gif)
+![alt text](/assets/numpad_keyboard/keyboard_matrix/pressing_four_buttons.gif)
