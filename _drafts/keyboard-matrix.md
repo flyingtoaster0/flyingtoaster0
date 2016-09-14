@@ -21,7 +21,7 @@ One can eliminate the floating state by using pull-up and pull-down resistors.
 
 Suppose we want to detect when a switch is being pressed. Someone inexperienced with circuits might say "Oh that's easy! I'll connect my input to the source voltage with a switch in between. When it the switch is pressed, the input goes high!"
 
-![alt text](/assets/numpad_keyboard/vcc_switch_gnd.png)
+![alt text](/assets/numpad_keyboard/input_switch_vcc.png.png)
 
 Our young engineer is correct that the pin will be pulled high when the switch is pressed, but is forgetting that we do not actually know the state of the pin while the switch is open. It *might* be "0", but it also might not be.
 
