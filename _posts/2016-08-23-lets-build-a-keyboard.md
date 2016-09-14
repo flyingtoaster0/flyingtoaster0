@@ -9,7 +9,7 @@ While browsing Massdrop, I came across a cool looking numpad and almost joined t
 
 I started by looking at what microcontroller to use, and after browsing [this very resourceful website](https://www.google.ca/?ion=1&espv=2#q=how%20to%20build%20a%20keyboard) I found that a lot of people were using the ATmega32U4 for building custom keyboards. I then remembered that I had a [Pro Micro](https://www.sparkfun.com/products/12640) kicking around, so I pulled that out and fired up the Arduino IDE. 
 
-![alt text](/assets/pro_micro.jpg "A 5V/16MHz Pro Micro")
+![alt text](/assets/numpad_keyboard/lets_build_a_keyboard/pro_micro.jpg "A 5V/16MHz Pro Micro")
 
 I learned that the Arduino library has some pretty basic keyboard commands. The most useful one looks like this:
 
