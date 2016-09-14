@@ -8,25 +8,14 @@ In this post, I will go over digital I/O and keyboard matrices. I'll finish up b
 
 A keyboard is essentially a device on which there are a lot of buttons. When any one of these buttons is pressed, the state of an input pin on a microcontroller is changed, and then a computer is notified of the keypress event.
 
-- describe "sending" 1 or 0
-# Pin Logic
-
-
-
-
-Before we get into 
-
-
-- Describe pull up/pull down resistors and how they cause the voltage in the pin to be high by default
-
 # Controlling Pin Logic
 
 I have already been demonstrating detecting the state of an input pin in previous posts, but I'll now go over how it actually works.
 
 A digital input pin is capable of detecting two states: "1" and "0". In digital circuits, supply voltage (often 3.3V or 5.5V) being provided to the an input pin is generally interpreted as "1", while 0V is considered "0".
-When an input pin is not connected to anything, it is said to be in the "floating" or high impedance state (Hi-Z). While floating, a pin does not have any defined logic value. Although reading its input will result in a "1" or "0", this value will be unrealiable, as the pin is not actively having current flowing towards or away from it. Just because you have nothing connected to an input pin, it doesn't mean that it is a logical zero.
+When an input pin is not connected to anything, it is said to be in the "floating" or high impedance state (also called Hi-Z). While floating, a pin does not have any defined logic value. Although reading its input will result in a "1" or "0", this value will be unrealiable, as the pin is not actively having current flowing towards or away from it. Just because you have nothing connected to an input pin, it doesn't mean that it is a logical zero.
 
-Two ways to eliminate the floating state isare the use of pull-up and pull-down resistors.
+One can eliminate the floating state by using pull-up and pull-down resistors.
 
 ## Pull-Up Resistors
 
