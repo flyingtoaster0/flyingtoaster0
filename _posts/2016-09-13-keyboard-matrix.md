@@ -6,7 +6,7 @@ categories: hardware keyboards
 
 In this post, I will go over digital I/O and keyboard matrices. I'll finish up by showing a proof of concept of what will become the basis for the design of my PCB.
 
-A keyboard is essentially a device on which there are a lot of buttons. When any one of these buttons is pressed, the state of an input pin on a microcontroller is changed, and then a computer is notified of the keypress event.
+A keyboard is essentially big button matrix. When any one of these buttons is pressed, the state of an input pin on a microcontroller is changed, and then a computer is notified of the keypress event.
 
 # Controlling Pin Logic
 
