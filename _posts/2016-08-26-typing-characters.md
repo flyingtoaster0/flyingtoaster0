@@ -116,7 +116,7 @@ bool CALLBACK_HID_Device_CreateHIDReport(
 
 After flashing the chip again, this was the result!
 
-![alt text](/assets/pushing_button.gif "Pushing buttons. Producing zeroes.")
+![alt text](/assets/numpad_keyboard/typing_characters/pushing_button.gif "Pushing buttons. Producing zeroes.")
 
 Super excited about this. This is awesome. 
 
