@@ -11,7 +11,7 @@ I decided to start by designing a 2x2 keyboard matrix that would serve as a way 
 
 I fired up [KiCad](http://kicad-pcb.org/) and got to work on a schematic.
 
-![Schematic for the 2x2 matrix](/assets/numpad_keyboard/2x2_matrix/2x2_matrix_schematic.png)
+[![Schematic for the 2x2 matrix](/assets/numpad_keyboard/2x2_matrix/2x2_matrix_schematic.png)](/assets/numpad_keyboard/2x2_matrix/2x2_matrix_schematic.png)
 
 It looks pretty much the same as the keyboard matrix schematics shown in the previous post. I also added an LED just to check where it should go in conjunction with a switch - just in case I ever wanted to add one.
 
