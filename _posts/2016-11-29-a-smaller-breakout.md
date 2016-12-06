@@ -27,6 +27,14 @@ Next, I followed the schematic I designed for the breakout board I tried to asse
 
 [pic?]
 
+After I found the driver for the Atmega32u4's bootloader, I downloaded FLIP which is a program that can be used to flash Atmel microcontrollers with the stock bootloader. I flashed a .hex file from my keyboard project, and it seemed to flash successfully. I unplugged it, and wired up my 2x2 keyboard matrix. It's a disgusting mess of wires, but it worked!
+
+[pic of disgusting mess]
+
+I was able to type without any problems, and numlock worked too!
+
+[gif]
+
 
 
 
