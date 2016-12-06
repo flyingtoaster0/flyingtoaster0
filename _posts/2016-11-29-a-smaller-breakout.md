@@ -35,6 +35,10 @@ I was able to type without any problems, and numlock worked too!
 
 [gif]
 
+Since this circuit was built from the schematic that I designed for the breakout, I am now confident enough to go ahead and design the board for the numpad itself. More on that next time!
+
+
+
 
 
 
