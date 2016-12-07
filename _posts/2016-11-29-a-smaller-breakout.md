@@ -31,6 +31,6 @@ After I found the driver for the Atmega32u4's bootloader, I downloaded FLIP whic
 
 I was able to type without any problems, and numlock worked too! In the gif below, I toggle numlock using small keypad, and then using the numlock key on my actual keyboard.
 
-![Pressing numlock](/assets/numpad_keyboard/a_smaller_breakout/atmega32u4_breakout.gif)
+![Pressing numlock](/assets/numpad_keyboard/a_smaller_breakout/pressing_numlock.gif)
 
 Since this circuit was built from the schematic that I designed for the breakout, I am now confident enough to go ahead and design the board for the numpad itself. More on that next time!
