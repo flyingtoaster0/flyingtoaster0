@@ -25,7 +25,7 @@ Next, I soldered the through hole pins. To solder through hole pins, I like to s
 
 Next, I followed the schematic I designed for the breakout board I tried to assemble previously. After everything was connected, I plugged it in to my computer and got a "new device found" notification!
 
-After I found the driver for the Atmega32u4's bootloader, I downloaded FLIP which is a program that can be used to flash Atmel microcontrollers with the stock bootloader. I flashed a .hex file from my keyboard project, and it seemed to flash successfully. I unplugged it, and wired up my 2x2 keyboard matrix. It's a disgusting mess of wires, but it worked!
+After I found the driver for the Atmega32u4's bootloader, I downloaded FLIP which is a program that can be used to flash Atmel microcontrollers that have their stock bootloader. I flashed a .hex file from my keyboard project, and it seemed to flash successfully. I unplugged it, and wired up my 2x2 keyboard matrix. It's a disgusting mess of wires, but it worked!
 
 ![Keyboard circuit](/assets/numpad_keyboard/a_smaller_breakout/atmega32u4_breakout_breadboard_keyboard.jpg)
 
