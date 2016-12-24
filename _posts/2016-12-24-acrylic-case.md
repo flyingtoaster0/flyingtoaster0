@@ -44,9 +44,7 @@ After all the keys were in place, I started assembling the key stabilizers. Larg
 A key stablizer consists of three parts:
 
 1. Plastic inserts that fit into the plate
-
 2. The spring
-
 3. Keycap inserts that hook into the spring
 
 The spring fits into the plastic inserts, and then the keycap inserts hook into the sides of the spring. Together, this keeps larger keys relatively level when being pressed off centre.
