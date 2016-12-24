@@ -1,5 +1,5 @@
 ---
-title: "Acrylic Case"
+title: "Acrylic Sandwich Case"
 layout: post
 categories: hardware keyboards
 ---
@@ -52,11 +52,11 @@ I set up the spring on the switch for "0" first; it fit nicely.
 
 ![alt text](/assets/numpad_keyboard/acrylic_case/case_springs_good_1.gif)
 
-The springs for the "Enter" and "+" keys, however, did not feel quite right. After putting the springs on, the inserts seemed loose in the plate, and the springs felt like they had a constant tension applied to them. If you compare the above an below gifs, you can sort of see what I mean.
+The springs for the "Enter" and "+" keys, however, did not feel quite right. After putting the springs on, the inserts seemed loose in the plate, and the springs felt like they had a constant tension being applied to them. If you compare the gifs above and below, you can sort of see what I mean.
 
 ![alt text](/assets/numpad_keyboard/acrylic_case/case_springs_bad.gif)
 
-I opened my plate design and found that the holes for the stabilizer inserts are actually not symmetrical. This means that there was slightly less room on the spring's side, hence the constant tension. In red, we have the "bad" cut of the stablilizer inserts; the fixed cut is in blue.
+I opened my plate design and found that the holes for the stabilizer inserts are actually not symmetrical. This means that there was slightly less room on the spring's side, hence the constant tension. Below in red, we have the "bad" cut of the stablilizer inserts; the fixed cut is in blue.
 
 ![alt text](/assets/numpad_keyboard/acrylic_case/stabilizer_cut_comparison.png)
 
@@ -64,3 +64,4 @@ I fixed my design and sent it over to have it re-cut. I picked up the new cut af
 
 ![alt text](/assets/numpad_keyboard/acrylic_case/case_springs_good_2.gif)
 
+The next step is to wait for the PCB to arrive to see if everything fits. I'll update when it arrives.
