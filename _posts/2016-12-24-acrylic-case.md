@@ -42,8 +42,11 @@ I started plugging in the switches and was please to find that they all fit perf
 After all the keys were in place, I started assembling the key stabilizers. Larger keys like Spacebar, Enter, Numpad 0, or Numpad + require stabilizer springs to prevent the keys from wobbling if you don't press down in the center. 
 
 A key stablizer consists of three parts:
+
 1. Plastic inserts that fit into the plate
+
 2. The spring
+
 3. Keycap inserts that hook into the spring
 
 The spring fits into the plastic inserts, and then the keycap inserts hook into the sides of the spring. Together, this keeps larger keys relatively level when being pressed off centre.
