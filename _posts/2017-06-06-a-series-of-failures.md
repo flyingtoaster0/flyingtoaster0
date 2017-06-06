@@ -58,7 +58,7 @@ There was just one problem with this board.
 
 ![Red PCB no holes](/assets/numpad_keyboard/a_series_of_failures/red_pcb.jpg)
 
-Where the hell are the holes for my through hole components?! 
+Where the hell are all the holes?! 
 
 All those copper circles are supposed to have holes in them. This means that even if the board *did* work, that I wouldn't be able to put switches on it.
 
