@@ -62,7 +62,7 @@ Where the hell are the holes for my through hole components?!
 
 All those copper circles are supposed to have holes in them. This means that even if the board *did* work, that I wouldn't be able to put switches on it.
 
-This also meant that this board had no vias. Vias are really small holes in the board that allow traces to go from one side of the board to the other. Because this board was missing all copper drill holes, it meant that there were no vias, which meant that I couldn't even test to see if the my computer would recognize the board to begin with.
+This also meant that this board had no vias. Vias are really small holes in the board that allow traces to go from one side of the board to the other. Because this board was missing all copper drill holes, there were no vias, which meant that I couldn't even test to see if the my computer would recognize the board to begin with.
 
 Useless.
 
