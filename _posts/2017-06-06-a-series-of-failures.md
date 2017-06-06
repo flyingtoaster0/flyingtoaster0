@@ -20,7 +20,7 @@ Here's what the stencil looked like.
 
 ![Stencil](/assets/numpad_keyboard/a_series_of_failures/stencil1.jpg)
 
-The next step was aligning the stencil to the board's pads, and securing it. I used a very accurate method called "taping them together".
+The next step was aligning the stencil to the board's pads, and securing it. I used a very precise method called "taping them together".
 
 ![Stencil](/assets/numpad_keyboard/a_series_of_failures/stencil2.jpg)
 
