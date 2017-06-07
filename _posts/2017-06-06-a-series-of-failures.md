@@ -28,7 +28,7 @@ After that, I had to smear some solder paste on the holes in the stencil.
 
 ![Stencil](/assets/numpad_keyboard/a_series_of_failures/stencil3.jpg)
 
-The paste allied quite nicely. There were a few areas where paste was touching in adjacent pads, but solder paste tends to get "sucked" onto copper pads when melted, so I felt this should be alright.
+The paste applied quite nicely. There were a few areas where paste was touching in adjacent pads, but solder paste tends to get "sucked" onto copper pads when melted, so I felt this should be alright.
 
 After placing all the components, I heated up the frying pan.
 
