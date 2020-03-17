@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A Series Of Failures"
+title:  "Soldering The Keyboard"
 categories: hardware keyboards
 ---
 

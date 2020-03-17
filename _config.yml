@@ -1,10 +1,10 @@
 # Site settings
-title: "Circuits And Other Writings"
-#email: jacob@jacobtomlinson.co.uk
+title: "Software, Circuits And Other Writings"
+email: timothy.schonberger@gmail.com
 #description: "A dark blog theme for Jekyll."
 baseurl: ""
 url: "https://flyingtoaster0.github.io/"
-title_description: "A blog archiving my projects and other such things."
+title_description: "A blog archiving my work and personal projects."
 title_image: "http://www.gravatar.com/avatar/644f890d44e6d524da53b455bbcd52d3?s=500&d=mm"
 #google_analytics: "UA-20365477-4"
 #github_repository: https://github.com/jacobtomlinson/carte-noire
